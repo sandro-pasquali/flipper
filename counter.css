@@ -1,0 +1,9 @@
+#counter .digit
+  {
+    float: left;
+    background-image: url('93x170_number_strip.png');
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    height: 10370px;
+    width: 93px;
+  }

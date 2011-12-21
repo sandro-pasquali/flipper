@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title></title>
+  <link rel="stylesheet" href="counter.css" type="text/css" charset="utf-8">
+
+  <script type="text/javascript">
+   
+   /**
+    * A starting point for a smooth counter -- because we need more of those.
+    * Based on what was seen at www.apple.com, and a bold theft of their number filmstrip.
+    */
+  (function(){
+  
+    var digits            = [];
+    var digitHeight       = 170;
+    var maxHeight         = 10200;
+    var speed             = 50;
+    
+    var start = function(spd) {
+        speed = spd || speed;
+        
+        /**
+         * Just grab all the 'digit children' and create a record of el/pos
+         */
+        var c = document.getElementById('counter');
+        var cc = c.childNodes;
+        
+        for(var x=0; x < cc.length; x++) {
+            if(cc[x].nodeType === 1) {
+                digits.push({
+                    el:   cc[x],
+                    pos:  digitHeight
+                });  
+            }
+        }
+        tick();
+    };
+      
+    var tick = function() {
+        var nh;
+        for(var y=0; y < digits.length; y++) {
+            var d   = digits[y].el;
+            var cP  = digits[y].pos;
+      
+            nh = parseInt(cP) + digitHeight;
+            
+            if(nh > maxHeight) {
+                nh = digitHeight;  
+            }
+            
+            digits[y].pos = nh;
+
+            d.style.backgroundPosition = '0 -' + nh.toString();
+        }
+        setTimeout(tick,speed);
+    };
+
+    window.onload = function() {
+        start(50);
+    }
+      
+    }() );
+    
+
+  </script>
+</head>
+<body>
+  
+<div id="counter" style="height:170px; overflow:hidden;">
+  <div class="digit"></div>
+  <div class="digit"></div>
+  <div class="digit"></div>
+</div>  
+  
+</body>
+</html>
